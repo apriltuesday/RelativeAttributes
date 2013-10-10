@@ -1,0 +1,45 @@
+LIBSVM Code link (this one should be used, because this uses weights on instances) 
+
+www.csie.ntu.edu.tw/~cjlin/libsvmtools/weights/libsvm-weights-3.17.zip
+
+svmtrain and svmpredict should be mex compiled for usage.
+
+*************************************************************************************************
+
+Main file:
+
+[classification_accuracy] = JCA_AR(weight_flag,active_version,uniform_flag,weight_active_flag)
+
+This code learns the attribute and category models simultaneously
+
+weight_flag=1; if cvpr 2013 weighting scheme is used, otherwise 0
+
+active_version=1; if cvpr 2013 active learning scheme is used
+
+-1 if no active learning scheme is used
+
+0 if max entropy active learning scheme is used
+
+uniform_flag=1 and weight_active_flag=0 always!
+
+Variables which can be changed in the file:
+
+NRUN = maximum number of runs, should be 200 or more for Pubfig-900-60, otherwise curve will not be smooth
+It is usually slow for Pubfig-900-60, so for many runs parallel processing is strongly recommended.
+
+total_increment_in_training_size= how many iterations you ask people (300 is used for Pubfig-900-60)
+
+*************************************************************************************************
+
+data.mat: The data file with features and class labels, this is Pubfig-900-60 data.
+
+human_attribute_results_1.mat: Amazon Mechanical Turk Data was stored in this file to access while
+
+running our experiments
+
+train_test_and_validation_ids_multiple.mat: Storing some initial train-test splits such that several 
+
+algorithms run with the same train-test split
+
+learn_the_attribute_model, ranksvm_with_sim: These are used for relative attribute learning
+
